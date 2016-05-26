@@ -14,8 +14,9 @@ class ProductsItem extends React.Component{
       <h4>{product.title}</h4>
      </div>
      <div className="panel-body">
+      <p><img className="img-responsive" src={product.productImage} alt=""/></p>
       <p>{product.description}</p>
-      <p>Price: P {product.price}</p>
+      <p>Price: P{product.price}</p>
       <p>Items Left: {product.quantity}</p>
      </div>
      <div className="panel-footer">

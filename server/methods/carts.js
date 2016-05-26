@@ -1,4 +1,4 @@
-import {Cart} from '/lib/collections';
+import {Cart, Orders} from '/lib/collections';
 import {Meteor} from 'meteor/meteor';
 import {check} from 'meteor/check';
 
@@ -17,6 +17,26 @@ export default function () {
      Cart.insert(cartItem);
 
 
-    }
+    },
+    'cartsDeleteItem'(cartItemId){
+     check(cartItemId, String);
+
+     Cart.remove(cartItemId);
+
+    },
+    'cartsDeleteClientItems'(sessionId){
+     check(sessionId, String);
+
+     Cart.remove({sessionId: sessionId});
+
+    },
+
+    'ordersAddItem'(cartItems, clientInfo){
+
+     const purchasedDate = new Date();
+
+     Orders.insert({items: cartItems, clientInfo, status: 'pending', purchasedDate: purchasedDate});
+    },
+
   });
 }

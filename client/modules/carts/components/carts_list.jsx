@@ -3,14 +3,11 @@ import CartsItem from './carts_item.jsx';
 
 class CartsList extends React.Component{
 
- countTotalPrice(cartItems){
-  var total = 0;
 
-  cartItems.map( Item => {
-   total += parseInt(Item.price);
-  });
+ handleDelete(cartItemId){
+   const {deleteItem} = this.props;
 
-  return total;
+   deleteItem(cartItemId);
  }
 
  render(){
@@ -29,12 +26,23 @@ class CartsList extends React.Component{
      </thead>
      <tbody>
       {cartItems.map( item => (
-       <CartsItem key={item._id} item={item}/>
+       <CartsItem
+        key={item._id}
+        item={item}
+        onDeleteItem={this.handleDelete.bind(this)}/>
       ))}
      </tbody>
     </table>
-    <p>Total Items: {cartItems.length}</p>
-    <p>Total Price: {totalPrice(cartItems)}</p>
+    <div className="row">
+     <div className="col-md-6">
+      <p>Total Items: {cartItems.length}</p>
+      <p>Total Price: {totalPrice(cartItems)}</p>
+     </div>
+     <div className="col-md-6">
+      <a href={"/carts/checkout/" + Meteor._localStorage.getItem('userId')
+} className="btn btn-primary pull-right btn-large">CHECK OUT</a>
+     </div>
+    </div>
    </div>
   );
  }

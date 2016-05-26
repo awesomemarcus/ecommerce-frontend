@@ -1,24 +1,26 @@
 import {useDeps, composeAll, composeWithTracker} from 'mantra-core';
 
-import CartsList from '../components/carts_list.jsx';
+import Checkout from '../components/checkout.jsx';
 
-export const composer = ({context}, onData) => {
+export const composer = ({context, sessionId}, onData) => {
   const {Meteor, Collections} = context();
 
-  if(Meteor.subscribe('cartsItems').ready()){
-   const cartItems = Collections.Cart.find().fetch();
+  if(Meteor.subscribe("clientCartItems", sessionId).ready()){
+
+   const cartItems = Collections.Cart.find({sessionId:sessionId}).fetch();
+
    onData(null, {cartItems});
+
   }
 
 };
 
 export const depsMapper = (context, actions) => ({
-  deleteItem: actions.carts.Delete,
-  totalPrice: actions.carts.totalPrice,
+  addOrder: actions.carts.addOrder,
   context: () => context,
 });
 
 export default composeAll(
   composeWithTracker(composer),
   useDeps(depsMapper)
-)(CartsList);
+)(Checkout);
