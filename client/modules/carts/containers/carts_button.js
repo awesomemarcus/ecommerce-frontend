@@ -3,14 +3,13 @@ import {useDeps, composeAll, composeWithTracker} from 'mantra-core';
 import CartsButton from '../components/carts_button.jsx';
 
 export const composer = ({context}, onData) => {
-  const {Meteor, Collections} = context();
 
   onData(null, {});
 };
 
 export const depsMapper = (context, actions) => ({
   addItemToCart: actions.carts.Add,
-  context: () => context
+  context: () => context,
 });
 
 export default composeAll(

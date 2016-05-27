@@ -4,18 +4,20 @@ import ProductsList from '../components/products_list.jsx';
 
 export const composer = ({context}, onData) => {
   const {Meteor, Collections, LocalState} = context();
-  const error = LocalState.set('error', 'hello');
+
+  const filter = (LocalState.get('filter')) ? LocalState.get('filter') : {};
 
     if(Meteor.subscribe('productsList').ready()){
-     const products = Collections.ServerProducts.find().fetch();
-     onData(null, {error, products});
+     const products = Collections.ServerProducts.find(filter).fetch();
+     onData(null, {products});
     }
 
 
 };
 
 export const depsMapper = (context, actions) => ({
-  context: () => context
+  filterText: actions.products.filterQuery,
+  context: () => context,
 });
 
 export default composeAll(

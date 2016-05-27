@@ -31,11 +31,11 @@ export default function () {
 
     },
 
-    'ordersAddItem'(cartItems, clientInfo){
+    'ordersAddItem'(cartItems, clientInfo, totalAmount){
 
      const purchasedDate = new Date();
 
-     Orders.insert({items: cartItems, clientInfo, status: 'pending', purchasedDate: purchasedDate});
+     Orders.insert({items: cartItems, clientInfo, status: 'pending', purchasedDate: purchasedDate, totalAmount: totalAmount});
     },
 
   });

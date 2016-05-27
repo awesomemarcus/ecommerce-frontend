@@ -5,8 +5,10 @@ import CheckoutForm from './checkout_form.jsx';
 class Checkout extends React.Component{
 
 handlePurchaseSubmit(clientInfo){
- const {cartItems, addOrder} = this.props;
- addOrder(cartItems, clientInfo);
+ const {cartItems, addOrder, totalPrice} = this.props;
+
+ const totalAmount = totalPrice(cartItems);
+ addOrder(cartItems, clientInfo, totalAmount);
 }
 
  render(){

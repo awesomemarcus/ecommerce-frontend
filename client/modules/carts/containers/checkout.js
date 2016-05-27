@@ -16,6 +16,7 @@ export const composer = ({context, sessionId}, onData) => {
 };
 
 export const depsMapper = (context, actions) => ({
+  totalPrice: actions.carts.totalPrice,
   addOrder: actions.carts.addOrder,
   context: () => context,
 });

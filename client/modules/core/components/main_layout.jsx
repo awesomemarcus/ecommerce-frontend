@@ -15,14 +15,11 @@ const Layout = ({content = () => null }) => (
           </div>
           <div id="navbar" className="navbar-collapse collapse">
             <ul className="nav navbar-nav">
-              <li className="active"><a href="#">Products</a></li>
-              <li><a href="#">Cart</a></li>
-              
+              <li><a href="/">Products</a></li>
+
             </ul>
             <ul className="nav navbar-nav navbar-right">
-              <li className="active"><a href="./">Default <span className="sr-only">(current)</span></a></li>
-              <li><a href="../navbar-static-top/">Static top</a></li>
-              <li><a href="../navbar-fixed-top/">Fixed top</a></li>
+              <li><a href="/carts/list">Cart</a></li>
             </ul>
           </div>
         </div>

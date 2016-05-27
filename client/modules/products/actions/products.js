@@ -8,4 +8,8 @@ export default {
      return Bert.alert('Added to cart!', 'success', 'fixed-top', 'fa-check');
     })
   },
+
+  filterQuery({LocalState},filter){
+   return LocalState.set('filter', filter);
+  },
 }
